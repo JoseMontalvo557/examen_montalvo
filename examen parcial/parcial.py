@@ -2,14 +2,25 @@
 #Nombre: MONTALVO ROJAS, Jose Luis
 #Fecha: 13/04/2025
 
+
+menu1=0
+i=0
+fl=0
+ml=0
+masc=0
+fem=0
+mayEdad=0
+menEdad=0
+montototalAlu=0
+alunolente=0
+montodesc=0
+#######################################################
 usuario ="MONTALVO"
 contraseña = 72944788
-menu1=0
-#######################################################
 while(True):
     usuarioI=str(input("INGRESE UN USUARIO: "))
     contraseñaI=int(input("INGRESE SU CONTRASEÑA: "))
-    if(usuarioI.upper() == usuario and contraseñaI == contraseña):
+    if(usuarioI.upper() == usuario and int(contraseñaI) == contraseña):
         break
     print("#########INGRESE NUEVAMENTE SUS ACCESOS#########")
 
@@ -22,11 +33,18 @@ while(True):
     [4]. REPORTE TOTAL
     [5]. SALIR DEL PROGRAMA.
         """))
-    sc="A" or "B" or "C" or "D"
+    
+    
     if(menu1 == 2):
         while(True):
             seccion=str(input("INGRESE SECCION A/B/C/D: "))
-            if(seccion.upper() == sc):
+            if(seccion.upper() == "A"):
+                break
+            elif(seccion.upper() == "B"):
+                break
+            elif(seccion.upper() == "C"):
+                break
+            elif(seccion.upper() == "D"):
                 break
             else:    
                 print("SECCION INCORRECTA")
@@ -34,38 +52,47 @@ while(True):
             cantAlu=int(input("INGRESE LA CANTIDAD DE ALUMNOS: "))
             if(cantAlu > 0):
                 break
-            print("###########  ERROR  ##########")
-        i=0
-        l=0
-        masc=0
-        fem=0
-        mayEdad=0
-        menEdad=0
-        montototalAlu=0
+            print("########## ERROR  ##########")
+        
         while(i<cantAlu):
             i=i+1
             apAlum=str(input("ingrese apellido del alumno: "))
             while(True):
                 dniALum=int(input("INGRESE NUMERO DE DNI: "))
-                if(dniALum > 0 ):
+                if (len(str(dniALum)) == 8):
                     break
-                print("Faltan digitos en el DNI")
+                else:
+                     print("El DNI debe tener 8 dígitos.")
             while(True):
                 sex=str(input("Ingresar Género (M/F) de alumno "))
                 if(sex.upper() == "M" or "F"):
                     if(sex.upper()== "M"):
                         masc=masc+1
+                        while(True):
+                            lenT=int(input("¿Usa lentes? (1=SI / 0=NO) de alumno:"))
+                            if(lenT == 1):
+                                ml=ml+1
+                                break
+                            elif(lenT == 0):
+                                alunolente=alunolente+1
+                                break
+                            else:
+                                print(" ERROR SOLO (1=SI / 0=NO) ")
                     else:
                         fem=fem+1
+                        while(True):
+                            lenT=int(input("¿Usa lentes? (1=SI / 0=NO) de alumna: "))
+                            if(lenT == 1):
+                                fl=fl+1
+                                break
+                            elif(lenT == 0):
+                                alunolente=alunolente+1
+                                break
+                            else:
+                                print("ERROR ingrese correctamente")
                     break
-                print("Error ingresar correcta mente el genero M/F")
-            while(True):
-                len=str(input("¿Usa lentes? (1=SI / 0=NO) de alumno"))
-                if(len == "1" or "0"):
-                    if(len=="1"):
-                        l=l+1
-                    break
-                print(" ingrese correctamente") 
+                print("Error ingresar correctamente el genero M/F")
+            
             while(True):
                 edad=int(input("ingresar edad de alumno: "))
                 if(edad >13 and edad <=18):
@@ -76,9 +103,15 @@ while(True):
                     break
                 print("ingrese edades  correctas ")
             while(True):
-                montoAlu=int(input("ingreso monto del alumano: "))
+                montoAlu=int(input("ingreso monto del alumno: "))
+                print("=================================================")
                 if(montoAlu > 0):
                     montototalAlu=montototalAlu + montoAlu
+                    if(apAlum.upper() == "MONTALVO"):
+                        montodesc=montototalAlu-50
+                        montoneto=montodesc
+                    else:
+                        montoneto=montoAlu
                     break
                 print("ingrese numero correctos ")
 
@@ -176,4 +209,21 @@ while(True):
             break 
         break
     if(menu1==4):   
-        print("lentessi: ",l , "\nhombre ",masc,"\nmujeres ",fem, "\nmayor de edad",mayEdad, "\nmenor edad ",menEdad, "\nmonto",montototalAlu)
+        print( 
+              "\nDESCRIPCION                                                                MONTO ",
+              "\n=================================================================================",                                   
+              "\nCantidad de alumnos masculinos:                                      "," |  ",masc,
+              "\nCantidad de alumnas femeninas:                                       "," |  ",fem, 
+              "\nCantidad de alumnas con lentes:                                      "," |  ",fl, 
+              "\nCantidad de alumnos con lentes:                                      "," |  ",ml,
+              "\nCantidad de alumnos y alumnas SIN lentes:                            "," |  ",alunolente,
+              "\nCantidad de alumnos menores de edad:                                 "," |  ",menEdad, 
+              "\nCantidad de alumnos mayores de edad:                                 "," |  ",mayEdad,
+              "\nSección ingresada:                                                   "," |  ",seccion,
+              "\nMonto Total recaudado:                                               "," |  ",montototalAlu,
+              "\nMonto Total recaudado – refrigerio del usuario experto (-50 soles):  "," |  ",montodesc,
+              "\nMonto Total recaudado:                                               "," |  ",montoneto
+              )
+    if(menu1==5):
+        break
+    
